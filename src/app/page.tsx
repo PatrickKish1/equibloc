@@ -1,113 +1,108 @@
 import Image from "next/image";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import GigsList from "./components/GigsList";
+import gigsData from "./components/Gigs";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main>
+        {/* Hero Section */}
+        <section className="relative flex items-center justify-between px-[50px] bg-white py-16">
+          <div className="absolute left-0 top-10 z-0">
+            <Image src="/assets/bitmapGrey 1.png" alt="Background Hexagon" width={280} height={280} />
+          </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+          <div className="max-w-[50%] z-10 mb-[300px] ml-[30px] relative">
+            <h2 className="text-[#263238] text-[20px] mb-[25px]">Are You Looking For A Quick Gig?!</h2>
+            <h3 className="text-500 text-[#ff0909] font-bold text-[40px] mb-[10px]">EquiBloc Got You!</h3>
+            <p className="text-[#7d7d7d] text-[18px] mb-[5px]">Connect your wallet to get started</p>
+            <button className="bg-[#ff0909] text-white px-8 py-2 rounded-md font-bold">Get Started</button>
+          </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <div className="relative z-10">
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+            <div className="absolute right-[-50px] bottom-[-90px] z-0">
+              <Image src="/assets/bitmapGrey 2.png" alt="Background Hexagon" width={280} height={280} />
+            </div>
+            <div className="relative z-10 mr-[90px]">
+              <Image src="/assets/bro.png" alt="Girl Coding Illustration" width={500} height={500} />
+            </div>
+          </div>
+        </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+        {/* Partners */}
+        <section className="text-center py-[50px] px-5">
+          <h3 className="text-red-500 text-[24px] mb-5">Our Partners</h3>
+          <div className="flex justify-center flex-wrap items-center gap-8">
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/optimism.png" alt="OPTIMISM" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/the-graph.png" alt="The Graph" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/web3ladies-logo.png" alt="Web3 Ladies" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/circles-logo.png" alt="Circles" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/buidl.png" alt="BuildGuidl" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/esp-logo.png" alt="Ethereum support program" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/meta-logo.png" alt="Meta Pool" fill style={{ objectFit: "contain" }} />
+            </div>
+            <div className="w-[120px] h-[60px] relative">
+              <Image src="/assets/web3.png" alt="Web3 Bridge" fill style={{ objectFit: "contain" }} />
+            </div>
+          </div>
+        </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        {/* Trending Jobs Section */}
+        <section className="relative text-center py-[50px] px-5 bg-white">
+          
+          <div className="absolute left-10 top-0">
+            <Image src="/assets/bitmapGrey 1.png" alt="Hexagon" width={150} height={150} />
+          </div>
+          <div className="absolute right-10 top-20">
+            <Image src="/assets/bitmapGrey 1.png" alt="Hexagon" width={150} height={150} />
+          </div>
+
+          <h2 className="text-red-500 text-[24px] mb-5">Trending Jobs</h2>
+          <GigsList gigs={gigsData} /> {/* Pass gigsData as a prop */}
+          
+         
+          <button className="mt-5 bg-[#ff0909] text-white px-8 py-2 rounded-md font-bold">View all</button>
+
+         
+          <div className="flex justify-center gap-4 mt-10">
+            <div className="absolute right-[20px] top-[350px]">
+              <h2>About Us</h2>
+              <p>SOMETHINF</p>
+            </div>
+            <div className="w-[40px] h-[40px] relative">
+              <Image src="/assets/TwitterX.svg" alt="Twitter" width={40} height={40} />
+            </div>
+            <div className="w-[40px] h-[40px] relative">
+              <Image src="/assets/Instagram.svg" alt="Instagram" width={40} height={40} />
+            </div>
+            <div className="w-[40px] h-[40px] relative">
+              <Image src="/assets/LinkedIn.svg" alt="LinkedIn" width={40} height={40} />
+            </div>
+          </div>
+
+          <div className="absolute right-[20px] mb-[50px]">
+            <Image src="/assets/bro1.png" alt="Bro Illustration" width={350} height={350} />
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 }
