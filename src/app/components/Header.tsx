@@ -11,6 +11,7 @@ const Header = () => {
   const [walletAddress, setWalletAddress] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
+  const [activeLink, setActiveLink] = useState<string>('/');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -66,6 +67,15 @@ const Header = () => {
     setNotification(null);
   };
 
+  const handleNavigation = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, path: string) => {
+    if (!isWalletConnected) {
+      event.preventDefault();
+      setNotification('Please connect your wallet to access this page.');
+    } else {
+      setActiveLink(path);
+    }
+  };
+
   return (
     <header className="flex items-center justify-between p-5 bg-white border-b border-gray-200">
       <div className="flex items-center">
@@ -76,17 +86,17 @@ const Header = () => {
       <nav>
         <ul className="flex list-none">
           <li className="mx-5">
-            <Link href="/" className="text-gray-800 font-medium border-b-2 border-red-500">
+            <Link href="/" className={`text-gray-800 font-medium ${activeLink === '/' ? '' : ''}`} onClick={() => setActiveLink('/')}>
               Home
             </Link>
           </li>
           <li className="mx-5">
-            <Link href="/jobs" className="text-gray-800 font-medium">
+            <Link href="/jobs" className={`text-gray-800 font-medium ${activeLink === '/jobs' ? '' : ''}`} onClick={(e) => handleNavigation(e, '/jobs')}>
               Jobs
             </Link>
           </li>
           <li className="mx-5">
-            <Link href="/about" className="text-gray-800 font-medium">
+            <Link href="/about" className={`text-gray-800 font-medium ${activeLink === '/about' ? '' : ''}`} onClick={(e) => handleNavigation(e, '/about')}>
               About
             </Link>
           </li>
@@ -95,9 +105,14 @@ const Header = () => {
       <div className="flex items-center">
         {isWalletConnected && (
           <>
-            <button className="bg-white text-[#ff0909] border-2 border-[#ff0909] px-5 py-2 rounded font-bold">
-              Hire
+            <button className="bg-white text-[#ff0909] px-5 py-2 rounded font-bold">
+              <Image src="/assets/notification.svg" alt="Notification Icon" height={20} width={20} />
             </button>
+            <Link href="/hire">
+              <button className="bg-white text-[#ff0909] border-2 border-[#ff0909] ml-2 px-5 py-2 rounded font-bold">
+                Hire
+              </button>
+            </Link>
             <button className="bg-white text-[#ff0909] border-2 border-[#ff0909] ml-2 px-5 py-2 rounded font-bold">
               Apply
             </button>

@@ -53,23 +53,23 @@ const Footer = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="text-left md:mr-[90px]">
+        <div className="text-left mb-9 md:mr-[90px]">
           <h3 className="font-bold">Follow Us</h3>
           <div className="flex space-x-2">
             <Image
-              src="/assets/LinkedIn.svg"
+              src="/assets/linkedin-white.svg"
               alt="LinkedIn Icon"
               width={24}
               height={24}
             />
             <Image
-              src="/assets/TwitterX.svg"
+              src="/assets/twitterx-white.svg"
               alt="Twitter Icon"
               width={24}
               height={24}
             />
             <Image
-              src="/assets/Instagram.svg"
+              src="/assets/instagram-white.svg"
               alt="Instagram Icon"
               width={24}
               height={24}

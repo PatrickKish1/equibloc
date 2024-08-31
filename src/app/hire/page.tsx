@@ -11,6 +11,7 @@ const CreateGigPage: React.FC = () => {
   const [rate, setRate] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [type, setType] = useState<string>("");
+  const [aboutCompany, setAboutCompany] = useState<string>(""); // New state for About the Company
   const [jobDescription, setJobDescription] = useState<string>("");
   const [kpis, setKpis] = useState<string>("");
 
@@ -31,6 +32,7 @@ const CreateGigPage: React.FC = () => {
       rate,
       duration,
       type,
+      aboutCompany, // Include About the Company in the submission
       jobDescription,
       kpis,
     });
@@ -42,6 +44,7 @@ const CreateGigPage: React.FC = () => {
     setRate("");
     setDuration("");
     setType("");
+    setAboutCompany(""); // Reset About the Company
     setJobDescription("");
     setKpis("");
   };
@@ -49,27 +52,37 @@ const CreateGigPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow flex items-center justify-center">
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-2xl font-bold mb-6">Create a New Gig</h1>
+          <h1 className="text-2xl font-bold mb-6 text-center">Create a New Gig</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* File Upload */}
-            <div>
-              <label htmlFor="companyLogo" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="companyLogo" className="block text-sm font-medium text-gray-700 text-center">
                 Company Logo
               </label>
-              <input
-                type="file"
-                id="companyLogo"
-                onChange={handleFileChange}
-                className="mt-1 block w-full"
-                accept="image/*"
-              />
+              <div className="flex items-center">
+                <input
+                  type="file"
+                  id="companyLogo"
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept="image/*"
+                />
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('companyLogo')?.click()}
+                  className="bg-[#ff0909] bg-500 text-white mb-6 px-4 py-2 rounded-md hover:bg-[#ff0909] bg-700"
+                >
+                  Choose File
+                </button>
+                {companyLogo && <span className="ml-2">{companyLogo.name}</span>}
+              </div>
             </div>
 
             {/* Job Title */}
-            <div>
-              <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700 text-center">
                 Job Title
               </label>
               <input
@@ -77,14 +90,14 @@ const CreateGigPage: React.FC = () => {
                 id="jobTitle"
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] mb-6 border border-gray-300 rounded-md p-2"
                 required
               />
             </div>
 
             {/* Company Name */}
-            <div>
-              <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="companyName" className="block mt-6 text-sm font-medium text-gray-700 text-center">
                 Company Name
               </label>
               <input
@@ -92,14 +105,14 @@ const CreateGigPage: React.FC = () => {
                 id="companyName"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] border border-gray-300 rounded-md p-2"
                 required
               />
             </div>
 
             {/* Rate */}
-            <div>
-              <label htmlFor="rate" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="rate" className="block text-sm mt-6 font-medium text-gray-700 text-center">
                 Rate
               </label>
               <input
@@ -107,14 +120,14 @@ const CreateGigPage: React.FC = () => {
                 id="rate"
                 value={rate}
                 onChange={(e) => setRate(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] border border-gray-300 rounded-md p-2"
                 required
               />
             </div>
 
             {/* Duration */}
-            <div>
-              <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="duration" className="block text-sm mt-6 font-medium text-gray-700 text-center">
                 Duration
               </label>
               <input
@@ -122,14 +135,14 @@ const CreateGigPage: React.FC = () => {
                 id="duration"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] border border-gray-300 rounded-md p-2"
                 required
               />
             </div>
 
             {/* Type */}
-            <div>
-              <label htmlFor="type" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="type" className="block text-sm mt-6 font-medium text-gray-700 text-center">
                 Type
               </label>
               <input
@@ -137,46 +150,61 @@ const CreateGigPage: React.FC = () => {
                 id="type"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] border border-gray-300 rounded-md p-2"
+                required
+              />
+            </div>
+
+            {/* About the Company */}
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="aboutCompany" className="block text-sm mt-6 font-medium text-gray-700 text-center">
+                About the Company
+              </label>
+              <textarea
+                id="aboutCompany"
+                value={aboutCompany}
+                onChange={(e) => setAboutCompany(e.target.value)}
+                className="mt-1 block w-[60%] border border-gray-300 rounded-md p-2"
+                rows={4}
                 required
               />
             </div>
 
             {/* Job Description */}
-            <div>
-              <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="jobDescription" className="block text-sm mt-4 font-medium text-gray-700 text-center">
                 Job Description
               </label>
               <textarea
                 id="jobDescription"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] mb-6 border border-gray-300 rounded-md p-2"
                 rows={4}
                 required
               />
             </div>
 
             {/* KPIs */}
-            <div>
-              <label htmlFor="kpis" className="block text-sm font-medium text-gray-700">
+            <div className="flex flex-col items-center space-y-2">
+              <label htmlFor="kpis" className="block text-sm font-medium text-gray-700 text-center">
                 KPIs
               </label>
               <textarea
                 id="kpis"
                 value={kpis}
                 onChange={(e) => setKpis(e.target.value)}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                className="mt-1 block w-[60%] mb-6 border border-gray-300 rounded-md p-2"
                 rows={4}
                 required
               />
             </div>
 
             {/* Submit Button */}
-            <div>
+            <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                className="bg-[#ff0909] mb-2 bg-500 text-white px-4 py-2 rounded-md hover:bg-[#ff0909] bg-700"
               >
                 Post Gig
               </button>

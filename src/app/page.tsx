@@ -23,7 +23,6 @@ export default function Home() {
           </div>
 
           <div className="relative z-10">
-
             <div className="absolute right-[-50px] bottom-[-90px] z-0">
               <Image src="/assets/bitmapGrey 2.png" alt="Background Hexagon" width={280} height={280} />
             </div>
@@ -66,38 +65,41 @@ export default function Home() {
 
         {/* Trending Jobs Section */}
         <section className="relative text-center py-[50px] px-5 bg-white">
-          
-          <div className="absolute left-10 top-0">
-            <Image src="/assets/bitmapGrey 1.png" alt="Hexagon" width={150} height={150} />
+          <div className="absolute left-[0px] top-0">
+            <Image src="/assets/bitmapGrey 1.png" alt="Hexagon" width={250} height={250} />
           </div>
-          <div className="absolute right-10 top-20">
-            <Image src="/assets/bitmapGrey 1.png" alt="Hexagon" width={150} height={150} />
+          <div className="absolute right-0 top-[580px]">
+            <Image src="/assets/bitmapGrey 2.png" alt="Hexagon" width={250} height={250} />
           </div>
 
           <h2 className="text-red-500 text-[24px] mb-5">Trending Jobs</h2>
           <GigsList gigs={gigsData} /> {/* Pass gigsData as a prop */}
-          
-         
-          <button className="mt-5 bg-[#ff0909] text-white px-8 py-2 rounded-md font-bold">View all</button>
+          <button className="mt-[60px] bg-[#ff0909] text-white px-8 py-2 rounded-md font-bold">View all</button>
+        </section>
 
-         
-          <div className="flex justify-center gap-4 mt-10">
-            <div className="absolute right-[20px] top-[350px]">
-              <h2>About Us</h2>
-              <p>SOMETHINF</p>
+        {/* About Us Section */}
+        <section className="flex justify-between items-center px-[50px] py-16">
+          <div className="max-w-[50%] ml-8">
+            <h2 className="text-[#263238] text-[24px] mb-[25px]">About Us</h2>
+            <p className="text-[#7d7d7d] text-[18px] mb-[15px]">
+              We are a team dedicated to connecting freelancers with quick gigs.
+              </p>
+            <div className="flex gap-4">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <Image src="/assets/TwitterX.svg" alt="Twitter" width={40} height={40} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <Image src="/assets/Instagram.svg" alt="Instagram" width={40} height={40} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Image src="/assets/LinkedIn.svg" alt="LinkedIn" width={40} height={40} />
+              </a>
             </div>
-            <div className="w-[40px] h-[40px] relative">
-              <Image src="/assets/TwitterX.svg" alt="Twitter" width={40} height={40} />
-            </div>
-            <div className="w-[40px] h-[40px] relative">
-              <Image src="/assets/Instagram.svg" alt="Instagram" width={40} height={40} />
-            </div>
-            <div className="w-[40px] h-[40px] relative">
-              <Image src="/assets/LinkedIn.svg" alt="LinkedIn" width={40} height={40} />
-            </div>
+            <button className="mt-5 bg-[#ff0909] text-white px-8 py-2 rounded-md font-bold">
+              Learn More
+            </button>
           </div>
-
-          <div className="absolute right-[20px] mb-[50px]">
+          <div className="relative right-20">
             <Image src="/assets/bro1.png" alt="Bro Illustration" width={350} height={350} />
           </div>
         </section>
