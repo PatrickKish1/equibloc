@@ -33,7 +33,7 @@ const GigDetailPage = () => {
       const adapter = new BrowserProviderContractRunner();
       await adapter.init();
       setCirclesAddress(adapter.address);
-      setSdk(new Sdk(chainConfig, adapter));
+      // setSdk(new Sdk(chainConfig, adapter));
   }
 
   // Initialize SDK when component mounts
