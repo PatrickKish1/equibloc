@@ -13,27 +13,10 @@ const CreateGigPage: React.FC = () => {
   const [rate, setRate] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
   const [type, setType] = useState<string>("");
-  const [aboutCompany, setAboutCompany] = useState<string>(""); // New state for About the Company
+  const [aboutCompany, setAboutCompany] = useState<string>("");
   const [jobDescription, setJobDescription] = useState<string>("");
-  const [kpis, setKpis] = useState<string>("");
-  const { createGig, generateText } = useWallet();
-
-
-  useEffect(() => {
-    const handleTabPress = (event: any) => {
-      if (event.key === 'Tab') {
-        setPrompt(jobDescription); 
-        generateText(jobDescription); 
-      }
-    };
-  
-    
-    window.addEventListener('keydown', handleTabPress);
-  
-    return () => {
-      window.removeEventListener('keydown', handleTabPress);
-    };
-  }, [jobDescription, generateText])
+  const [kpis, setKpis] = useState<string[]>([]);
+  const { createGig } = useWallet();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -41,10 +24,17 @@ const CreateGigPage: React.FC = () => {
     }
   };
 
+  const handleKpiChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value;
+    // Split the input by commas and remove extra whitespace
+    const kpiArray = value.split(",").map(kpi => kpi.trim());
+    setKpis(kpiArray);
+  };
+
   const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    // Here you would handle form submission logic, such as posting to an API.
+
+    // Log the form submission for debugging
     console.log({
       companyLogo,
       jobTitle,
@@ -56,17 +46,19 @@ const CreateGigPage: React.FC = () => {
       jobDescription,
       kpis,
     });
-    await createGig("companyLogo", jobDescription, [""],rate);
-    // Reset form after submission (if needed)
+
+    await createGig("companyLogo", jobDescription, kpis, rate);
+
+    // Reset form fields after submission
     setCompanyLogo(null);
     setJobTitle("");
     setCompanyName("");
     setRate("");
     setDuration("");
     setType("");
-    setAboutCompany(""); // Reset About the Company
+    setAboutCompany("");
     setJobDescription("");
-    setKpis("");
+    setKpis([]);
   };
 
   return (
@@ -208,12 +200,12 @@ const CreateGigPage: React.FC = () => {
             {/* KPIs */}
             <div className="flex flex-col items-center space-y-2">
               <label htmlFor="kpis" className="block text-sm font-medium text-gray-700 text-center">
-                KPIs
+                KPIs (comma-separated)
               </label>
               <textarea
                 id="kpis"
-                value={kpis}
-                onChange={(e) => setKpis(e.target.value)}
+                value={kpis.join(", ")}
+                onChange={handleKpiChange}
                 className="mt-1 block w-[60%] mb-6 border border-gray-300 rounded-md p-2"
                 rows={4}
                 required

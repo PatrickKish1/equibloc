@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# EquiBloc Platform
+
+EquiBloc is a  platform designed to connect individuals with opportunities in the Web3 ecosystem. It empowers users by providing features that enhance the job search and hiring process while ensuring fairness and security through blockchain technology. It  enables fair compensation of labour, opensource contributions, and provides a thriving environment for talents built on the ZK-sync.
+
+## Features
+
+### MVP Features
+
+#### User Authentication
+- Ensures secure access to the platform, leveraging blockchain for identity verification.
+
+#### Hire
+- Enables employers to hire talents, add job descriptions, set KPIs, and create tests.
+
+#### Apply
+- Allows talents to interact with job postings and apply for positions.
+
+#### Search
+- Users can enter keywords or phrases to find specific job listings, companies, or talents on the platform.
+
+#### Filter
+- Refine search results based on criteria like job type, location, salary range, and experience level.
+
+#### Escrow
+- Secures payments to prevent labor exploitation, building trust within the platform.
+
+#### AI-Powered Cover Letter Writing
+- Enhances the application process by helping users craft compelling cover letters, making it easier for job seekers to apply.
+
+#### Job Recommendation Engine
+- Suggests relevant jobs based on a user's profile and past behavior, improving engagement and user experience.
+
+### Future Features
+
+#### Talent Matching Algorithm
+- Ensures that the most suitable candidates are matched with job opportunities, improving the quality of hires for employers.
+
+#### Review and Rating System
+- Builds transparency and trust by allowing both employers and talents to rate their experiences, encouraging accountability.
+
+#### Web3 Community Partnership Portal
+- Helps onboard talents from Web3 communities, fostering partnerships.
+
+#### In-Platform Messaging and Collaboration Tools
+- Facilitates communication between employers and talents.
+
+#### Analytics and Reporting for Employers
+- Provides employers with insights into their job postings and applicants, enhancing their hiring process.
+
+#### Integration with External Learning Platforms
+- Users can improve their skills directly from the job platform, making them more competitive in the Web3 job market.
 
 ## Getting Started
 
-First, run the development server:
+To get started with EquiBloc, clone the repository and follow the setup instructions.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+git clone https://github.com/yourusername/equibloc.git
+cd equibloc
