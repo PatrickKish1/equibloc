@@ -5,14 +5,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Web3 from 'web3';
 import Notification from './Notification';
+import { Sdk, type CirclesConfig } from "@circles-sdk/sdk";
+import { BrowserProviderContractRunner } from "@circles-sdk/adapter-ethers";
+import { ZKsyncPlugin } from "web3-plugin-zksync";
+import { useWallet } from '../context/WalletContext';
 
 const Header = () => {
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
+ 
   const [walletAddress, setWalletAddress] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
   const [activeLink, setActiveLink] = useState<string>('/');
+  const [web3, setWeb3] = useState<Web3 | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { account, connectWallet, isWalletConnected } = useWallet();
 
   useEffect(() => {
     if (typeof window.ethereum !== 'undefined') {
@@ -28,6 +34,7 @@ const Header = () => {
       });
     }
 
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
@@ -41,24 +48,19 @@ const Header = () => {
     };
   }, []);
 
-  const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
-      const web3 = new Web3(window.ethereum);
-      try {
-        const accounts = await web3.eth.requestAccounts();
-        setWalletAddress(accounts[0]);
-        setIsWalletConnected(true);
-      } catch (error) {
-        setNotification('Error connecting wallet. Please try again.');
-        console.error('Error connecting wallet:', error);
-      }
+
+  useEffect(() => {
+    if (window.ethereum) {
+      const web3Instance = new Web3(window.ethereum);
+      setWeb3(web3Instance);
     } else {
-      setNotification('MetaMask is not installed. Please install it to use this feature.');
+      console.log('MetaMask is not installed');
     }
-  };
+  }, []);
+
 
   const disconnectWallet = () => {
-    setIsWalletConnected(false);
+    
     setWalletAddress('');
     setIsDropdownOpen(false);
   };
@@ -125,7 +127,7 @@ const Header = () => {
           >
             <Image src="/assets/wallet.svg" alt="Wallet Icon" height={16} width={16} />
             <span className="ml-2">
-              {isWalletConnected ? walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4) : 'Connect Wallet'}
+              {isWalletConnected ? account!.slice(0, 6) + '...' + account!.slice(-4) : 'Connect Wallet'}
             </span>
           </button>
           {isDropdownOpen && (

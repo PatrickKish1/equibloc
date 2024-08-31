@@ -10,6 +10,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@circles-sdk/adapter-ethers": "^0.7.1",
+    "@circles-sdk/data": "^0.7.1",
+    "@circles-sdk/profiles": "^0.7.1",
+    "@circles-sdk/sdk": "^0.7.1",
     "@rainbow-me/rainbowkit": "^2.1.5",
     "@wagmi/connectors": "^5.1.7",
     "@wagmi/core": "^2.13.4",
@@ -20,7 +24,8 @@
     "react-dom": "^18",
     "viem": "^2.21.0",
     "wagmi": "^2.12.7",
-    "web3": "^4.12.1"
+    "web3": "^4.12.1",
+    "web3-plugin-zksync": "^1.0.6"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { WalletProvider } from './context/WalletContext';
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "EquiBloc",
-  description: "Combining “equitable” and “blockchain” to highlight fair opportunities.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +12,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <WalletProvider>
       <body className={inter.className}>{children}</body>
+      </WalletProvider>
     </html>
   );
 }
