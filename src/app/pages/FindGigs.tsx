@@ -1,12 +1,3 @@
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-
-
-export default function FindGigs() {
-    return(
-        <div className="creategig">
-            <Header />
-            <Footer />
-        </div>
-    );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d3cd4832c15b100358945116cc8abde56f9982e45a1409294807fd4a028aec22
+size 251

@@ -1,27 +1,3 @@
-import React, { useEffect } from 'react';
-
-interface NotificationProps {
-  message: string;
-  show: boolean;
-  onClose: () => void;
-}
-
-const Notification: React.FC<NotificationProps> = ({ message, show, onClose }) => {
-  useEffect(() => {
-    if (show) {
-      const timer = setTimeout(() => {
-        onClose();
-      }, 5000); // Notification duration
-
-      return () => clearTimeout(timer);
-    }
-  }, [show, onClose]);
-
-  return (
-    <div className={`fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-md transition-opacity duration-300 ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <p>{message}</p>
-    </div>
-  );
-};
-
-export default Notification;
+version https://git-lfs.github.com/spec/v1
+oid sha256:f54c670e031988b575ae2ff57891165fde234552c3ee7578774af69656f4c645
+size 710
