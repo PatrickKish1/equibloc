@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useWallet } from '../context/WalletContext';
 
 const CreateGigPage: React.FC = () => {
   const [companyLogo, setCompanyLogo] = useState<File | null>(null);
@@ -14,6 +15,7 @@ const CreateGigPage: React.FC = () => {
   const [aboutCompany, setAboutCompany] = useState<string>(""); // New state for About the Company
   const [jobDescription, setJobDescription] = useState<string>("");
   const [kpis, setKpis] = useState<string>("");
+  const { createGig } = useWallet();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -21,7 +23,7 @@ const CreateGigPage: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     // Here you would handle form submission logic, such as posting to an API.
@@ -32,11 +34,11 @@ const CreateGigPage: React.FC = () => {
       rate,
       duration,
       type,
-      aboutCompany, // Include About the Company in the submission
+      aboutCompany,
       jobDescription,
       kpis,
     });
-
+    await createGig("companyLogo", jobDescription, [""],rate);
     // Reset form after submission (if needed)
     setCompanyLogo(null);
     setJobTitle("");

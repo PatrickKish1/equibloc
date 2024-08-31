@@ -21,19 +21,7 @@ const Header = () => {
   const { account, connectWallet, isWalletConnected } = useWallet();
 
   useEffect(() => {
-    if (typeof window.ethereum !== 'undefined') {
-      const web3 = new Web3(window.ethereum);
-      window.ethereum.on('accountsChanged', (accounts: string[]) => {
-        if (accounts.length > 0) {
-          setWalletAddress(accounts[0]);
-          setIsWalletConnected(true);
-        } else {
-          setIsWalletConnected(false);
-          setWalletAddress('');
-        }
-      });
-    }
-
+   
     
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
