@@ -71,7 +71,7 @@ const GigDetailPage = () => {
                 window.location.href = '/apply';
               }}
             >
-              Apply Now
+              Apply Now                                                
             </button>
           </div>
         </div>

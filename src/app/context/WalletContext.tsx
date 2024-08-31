@@ -2,6 +2,8 @@ import React, { createContext, useState, useContext, ReactNode, useEffect } from
 import { Web3 } from "web3";
 import { ZKsyncPlugin } from "web3-plugin-zksync";
 import { CONTRACT_ADDRESS, abi } from '../constant';
+import { Models, ORAPlugin, Chain } from "@ora-io/web3-plugin-ora";
+
 
 
 interface WalletContextType {
@@ -10,7 +12,9 @@ interface WalletContextType {
   web3: Web3 | null;
   gigsHubContract: any;
   connectWallet: () => Promise<void>;
+  generateText:(prompt: string) => Promise<void>
   createGig: (img: string, description: string, kpis: string[], bounty: string) => Promise<void>;
+
   // Add other contract functions here...
 }
 const web3 = new Web3();
@@ -43,6 +47,20 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  const generateText = async (prompt: string) =>{
+    const web3 = new Web3("https://1rpc.io/sepolia");
+    web3.registerPlugin(new ORAPlugin(Chain.SEPOLIA))
+
+    const estimatedFee = await web3.ora.estimateFee(Models.LLAMA2);
+    const tx = await web3.ora.calculateAIResult("0xA1a9E8c73Ecf86AE7F4858D5Cb72E689cDc9eb3e", Models.LLAMA2, prompt, estimatedFee.toString());
+  console.log("Estimated fee: ", estimatedFee);
+
+  setTimeout(async () => {
+    const result = await web3.ora.getAIResult(Models.LLAMA2, prompt);
+    console.log("Inference result: ", result);
+    //→ Inference result:  QmQkxg31E9b8mCMAW8j2LYB46LM8ghExbXrQHob26WLos1
+}, 30000);
+  }
   
   const connectWallet = async () => {
     if (web3) {
@@ -64,6 +82,8 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
 
   const createGig = async (img: string, description: string, kpis: string[], bounty: string) => {
     if (gigsHubContract && account) {
+      console.log(gigsHubContract)
+      console.log(img,description,kpis,bounty)
       try {
         await gigsHubContract.methods
           .createGig(img, description, kpis)
@@ -76,7 +96,7 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <WalletContext.Provider value={{ account, isWalletConnected, web3, gigsHubContract, connectWallet, createGig }}>
+    <WalletContext.Provider value={{ account, isWalletConnected, web3, gigsHubContract, connectWallet, createGig, generateText }}>
       {children}
     </WalletContext.Provider>
   );

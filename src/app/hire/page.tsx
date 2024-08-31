@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useWallet } from '../context/WalletContext';
@@ -8,6 +8,7 @@ import { useWallet } from '../context/WalletContext';
 const CreateGigPage: React.FC = () => {
   const [companyLogo, setCompanyLogo] = useState<File | null>(null);
   const [jobTitle, setJobTitle] = useState<string>("");
+  const [prompt, setPrompt] = useState<string>("")
   const [companyName, setCompanyName] = useState<string>("");
   const [rate, setRate] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
@@ -15,7 +16,24 @@ const CreateGigPage: React.FC = () => {
   const [aboutCompany, setAboutCompany] = useState<string>(""); // New state for About the Company
   const [jobDescription, setJobDescription] = useState<string>("");
   const [kpis, setKpis] = useState<string>("");
-  const { createGig } = useWallet();
+  const { createGig, generateText } = useWallet();
+
+
+  useEffect(() => {
+    const handleTabPress = (event: any) => {
+      if (event.key === 'Tab') {
+        setPrompt(jobDescription); 
+        generateText(jobDescription); 
+      }
+    };
+  
+    
+    window.addEventListener('keydown', handleTabPress);
+  
+    return () => {
+      window.removeEventListener('keydown', handleTabPress);
+    };
+  }, [jobDescription, generateText])
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
