@@ -31,7 +31,7 @@ EquiBloc is a  platform designed to connect individuals with opportunities in th
 
 
 
-## Getting Started
+## Roadmap
 - Job Recommendation Engine
 - Talent Matching Algorithm
 - Review and Rating System
